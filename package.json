@@ -1,0 +1,34 @@
+{
+  "name": "reactj",
+  "version": "1.0.0",
+  "description": "react learning ",
+
+  "scripts": { 
+    "start":"parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RamyaSIyengar/React.git"
+  },
+  "keywords": [],
+  "author": "Ram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RamyaSIyengar/React/issues"
+  },
+  "homepage": "https://github.com/RamyaSIyengar/React#readme",
+  "devDependencies": {
+    "parcel":"^2.10.3",
+    "process":"^0.11.10"
+  },
+"dependencies": {
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0"
+},
+"browserlist":[
+"last 2 chrome version",
+"last 2 Firefox version"
+]
+}
