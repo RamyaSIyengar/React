@@ -3,7 +3,7 @@ import  CDN_URL  from "../../utils/constants";
 const FoodCard = (props) => {
     
     const {foodData} = props;
-    console.log(foodData)
+    // console.log(foodData)
     const {name, cuisines, avgRating, deliveryTime,costForTwo } = foodData?.info;
     return (
         <div className="foodCard" style={{backgroundColor: "#f0f0f0"  }}>

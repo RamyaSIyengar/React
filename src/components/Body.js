@@ -5,22 +5,27 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
 
-    //Local State Variable - Super powerful Variable
+ //Local State Variable - Super powerful Variable
 
  const [ListOfFoods, setListOfFoods] = useState([]);
-console.log(ListOfFoods)
+ const [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
+
+ const [searchText, setSearchText] = useState("");
+
+ console.log(ListOfFoods)
+console.log("Body rendered");
  useEffect(() => {
     fetchData();
  },  [])
-
+ 
  const fetchData = async() => {
     const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
 
  const json = await data.json();
  console.log(json)
  //optional chaining
- setListOfFoods(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    )
+ setListOfFoods(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+ setFilteredListOfFoods(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
  };
 
 //error: Access to fetch at 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING' from origin 'http://localhost:1234' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -32,21 +37,37 @@ console.log(ListOfFoods)
     return ListOfFoods.length===0 ? <Shimmer/>:(
         <div className="body">
         <div className="filter">
+            <div className="search">
+                <input type="text" 
+                className="search-box"
+                 value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}/>
+                <button onClick={() =>{
+                    //filter the restrocards and update the UI
+                    //searchText
+                    console.log(searchText);
+                    const filteredRestraurant =ListOfFoods.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()))
+                    
+
+                    setFilteredListOfFoods(filteredRestraurant);
+
+                }}>Search</button>
+            </div>
             <button 
             className="FavouriteDishes" 
             onClick={() => {
                 const filteredList = ListOfFoods.filter(
-                    (res) => res.data.avgRating > 4
+                    (res) => res.info.avgRating >= 4.4
                 );
-                setListOfFoods(filteredList);
+                setFilteredListOfFoods(filteredList);
                 }}
             >
-            Favourite Dishes
+            Top Rated restaurants
             </button>
             </div>
         <div className="food_Container">
             {
-                ListOfFoods.map((food, index) => (
+                FilteredListOfFoods.map((food) => (
                     <FoodCard key={food.info.id} foodData={food} /> 
                 ))
             }
