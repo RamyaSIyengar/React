@@ -2,30 +2,32 @@ import FoodCard from "./foodCard"
 // import foodList from "../../utils/mockData"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
 
  //Local State Variable - Super powerful Variable
 
- const [ListOfFoods, setListOfFoods] = useState([]);
- const [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
+ let [ListOfFoods, setListOfFoods] = useState([]);
+ let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
 
  const [searchText, setSearchText] = useState("");
 
  console.log(ListOfFoods)
-console.log("Body rendered");
+// console.log("Body rendered");
  useEffect(() => {
     fetchData();
  },  [])
  
  const fetchData = async() => {
-    const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data= await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+   
 
  const json = await data.json();
  console.log(json)
  //optional chaining
- setListOfFoods(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
- setFilteredListOfFoods(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+ setListOfFoods(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+ setFilteredListOfFoods(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
  };
 
 //error: Access to fetch at 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING' from origin 'http://localhost:1234' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -67,8 +69,15 @@ console.log("Body rendered");
             </div>
         <div className="food_Container">
             {
-                FilteredListOfFoods.map((food) => (
-                    <FoodCard key={food.info.id} foodData={food} /> 
+                FilteredListOfFoods.map((restro) => (
+                    <Link
+                    key={restro.info.id} 
+                    to= {"/restaurants/"+restro?.info?.id}>
+                        <FoodCard  foodData={restro}/>
+                       
+                    </Link>
+                 
+                
                 ))
             }
                

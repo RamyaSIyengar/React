@@ -15,7 +15,6 @@ const FoodCard = (props) => {
             <h5>{costForTwo} </h5>
             <h5>{avgRating} Stars</h5>
             
-
             
         </div>
     );
