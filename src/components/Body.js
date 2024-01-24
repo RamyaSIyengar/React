@@ -3,21 +3,30 @@ import FoodCard from "./foodCard"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useListOfFoods from "../../utils/useListOfFoods";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Body = () => {
 
  //Local State Variable - Super powerful Variable
 
- let [ListOfFoods, setListOfFoods] = useState([]);
- let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
+//  let [ListOfFoods, setListOfFoods] = useState([]);
+// let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
+
 
  const [searchText, setSearchText] = useState("");
 
- console.log(ListOfFoods)
+let [ListOfFoods, setListOfFoods] = useState([]);
+let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
+//  const {ListOfFoods, FilteredListOfFoods} = useListOfFoods();
+
+
+//  console.log(ListOfFoods)
+//  console.log(FilteredListOfFoods)
 // console.log("Body rendered");
  useEffect(() => {
     fetchData();
- },  [])
+ },  [FoodCard])
  
  const fetchData = async() => {
     const data= await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -34,6 +43,12 @@ const Body = () => {
  //added Allow cors extension, and eneabled it
 
  
+//Online status
+
+const onlineStatus = useOnlineStatus();
+
+if(onlineStatus === false ) return  <h1>No internet</h1>
+
 
 //  console.log("Body rendered")
     return ListOfFoods.length===0 ? <Shimmer/>:(
@@ -49,9 +64,7 @@ const Body = () => {
                     //searchText
                     console.log(searchText);
                     const filteredRestraurant =ListOfFoods.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()))
-                    
-
-                    setFilteredListOfFoods(filteredRestraurant);
+                    setFilteredListOfFoods(filteredRestraurant)
 
                 }}>Search</button>
             </div>
