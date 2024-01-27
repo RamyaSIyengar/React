@@ -1,4 +1,4 @@
-import FoodCard from "./foodCard"
+import FoodCard, {withOpenLabel} from "./foodCard"
 // import foodList from "../../utils/mockData"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer";
@@ -14,7 +14,8 @@ const Body = () => {
 // let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
 
 
- const [searchText, setSearchText] = useState("");
+const [searchText, setSearchText] = useState("");
+const FoodCardOpen = withOpenLabel(FoodCard);
 
 let [ListOfFoods, setListOfFoods] = useState([]);
 let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
@@ -26,7 +27,7 @@ let [FilteredListOfFoods, setFilteredListOfFoods] = useState([]);
 // console.log("Body rendered");
  useEffect(() => {
     fetchData();
- },  [FoodCard])
+ },  [])
  
  const fetchData = async() => {
     const data= await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -52,24 +53,26 @@ if(onlineStatus === false ) return  <h1>No internet</h1>
 
 //  console.log("Body rendered")
     return ListOfFoods.length===0 ? <Shimmer/>:(
-        <div className="body">
-        <div className="filter">
-            <div className="search">
+        <div className="body pl-10">
+        <div className="flex" >
+            <div className="search p-4 m-4 ">
                 <input type="text" 
-                className="search-box"
+                className="search-box border border-gray-400  rounded-sm px-3 py-1" placeholder="Search for food and restaurants " maxLength="100" size="50" width="20"
                  value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}/>
-                <button onClick={() =>{
+                <button className="px-4 py-1 mx-2 bg-green-200 rounded-lg hover:bg-green-300"
+                 onClick={() =>{
                     //filter the restrocards and update the UI
                     //searchText
                     console.log(searchText);
                     const filteredRestraurant =ListOfFoods.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()))
                     setFilteredListOfFoods(filteredRestraurant)
 
-                }}>Search</button>
+                }}>Search🔍</button>
             </div>
+            <div className="search p-4 m-4 " >
             <button 
-            className="FavouriteDishes" 
+            className="bg-gray-300 px-4 py-1 shadow-2xl rounded-lg hover:bg-gray-400" 
             onClick={() => {
                 const filteredList = ListOfFoods.filter(
                     (res) => res.info.avgRating >= 4.4
@@ -80,14 +83,19 @@ if(onlineStatus === false ) return  <h1>No internet</h1>
             Top Rated restaurants
             </button>
             </div>
-        <div className="food_Container">
+            
+            </div>
+        <div className="food_Container flex flex-wrap ">
             {
                 FilteredListOfFoods.map((restro) => (
-                    <Link
+                    <Link className="hover:scale-105"
                     key={restro.info.id} 
                     to= {"/restaurants/"+restro?.info?.id}>
-                        <FoodCard  foodData={restro}/>
-                       
+                  {  restro.info.isOpen ? (
+                      <FoodCardOpen   foodData={restro}/>
+                       ) : ( 
+                       <FoodCard   foodData={restro}/>
+                      )}  
                     </Link>
                  
                 

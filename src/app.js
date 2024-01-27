@@ -11,6 +11,8 @@ import RestroMenu from "./components/RestroMenu";
 
 const Grocery = lazy(() => import("./components/Grocery"))
 
+
+
 const AppLayout = () => {
     return (
         <div className="app">
@@ -26,7 +28,7 @@ const appRouter = createBrowserRouter([
         element: <AppLayout />,
         children:  [{
             path:"/",
-            element: <Body />
+            element:<Body /> 
         },
             {
             path: "/About",
@@ -42,7 +44,7 @@ const appRouter = createBrowserRouter([
         },
         {
             path:"/Grocery",
-            element:<Suspense><Grocery/></Suspense> 
+            element:<Suspense fallback={<h1>Loading .....</h1>}><Grocery/></Suspense> 
         },
     ],
         errorElement: <Error />,

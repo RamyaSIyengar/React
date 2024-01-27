@@ -13,23 +13,23 @@ const Header = () => {
         console.log("useEffect called")
     }, [])
     return (
-        <div className="header">
-            <div className="logo_container">
-               <Link to="/"><img src={LOGO_URL}
-                 width="150" height="120"/></Link> 
+        <div className="flex justify-between bg-gray-200 shadow-lg m-2 sm:bg-yellow-50 lg:bg-pink-50">
+            <div className="logo_container bg-gray-200 ">
+               <Link to="/"><img className="w-45" src={LOGO_URL}/></Link> 
             </div>
-            <div className="nav-items">
-                <ul className="nav">
-                    <li>
+            <div className="flex items-center justify-between ">
+                <ul className="flex  m-2 ">
+                    <li className="px-4 font-semibold text-xl ">
                         Online Status: {onlineStatus? "✅" : "🔴"}
                     </li>
-                    <li>
-                        <Link to="/">Home</Link></li>
-                    <li><Link to="/About">About Us</Link> </li>
-                    <li><Link to="/Contact">Contact Us</Link></li>
-                    <li><Link to="/Grocery">Grocery</Link></li>
-                    <li>Cart</li>
-                    <button className="login"
+                    <li className="px-4 ">
+                        <Link to="/" className="font-semibold text-xl hover:text-red-800 ">Home</Link></li>
+                    <li className="px-4 ">
+                        <Link to="/About" className="font-semibold text-xl hover:text-red-800">About Us</Link> </li>
+                    <li className="px-4  font-semibold text-xl  hover:text-red-800"><Link to="/Contact">Contact Us</Link></li>
+                    <li className="px-4 font-semibold text-xl hover:text-red-800"><Link to="/Grocery">Grocery</Link></li>
+                    <li className="px-4 font-semibold text-xl hover:text-red-800">Cart</li>
+                    <button className="login text-black  hover:text-red-800"
                     onClick={ () => {
                         btnNameReact==="Login"?setBtnNameReact("Logout"):setBtnNameReact("Login")
                     }}

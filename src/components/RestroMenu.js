@@ -44,11 +44,11 @@ const RestroMenu = () =>{
     
     return(
         <div className="menu">
-             <h1>{name}</h1>
-            <p>{cuisines.join(", ")}</p>
+             <h1 className="text-2xl font-bold">{name}</h1>
+            <p className="text-lg font-semibold">{cuisines.join(", ")}</p>
             <p>{areaName}, {sla.lastMileTravelString}</p>
             <h3>{sla.slaString}, {costForTwoMessage}</h3>
-            <ul>
+            <ul className="p-4">
                 {itemCards.map((item) =>
                  <li key={item.card.info.id}> {item.card.info.name} - Rs. {item.card.info.defaultPrice/100}</li>)
 
