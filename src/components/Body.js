@@ -60,7 +60,7 @@ if(onlineStatus === false ) return  <h1>No internet</h1>
                 className="search-box border border-gray-400  rounded-sm px-3 py-1" placeholder="Search for food and restaurants " maxLength="100" size="50" width="20"
                  value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}/>
-                <button className="px-4 py-1 mx-2 bg-green-200 rounded-lg hover:bg-green-300"
+                <button className="px-4 py-1 mx-2 bg-gray-300 rounded-lg hover:bg-gray-400"
                  onClick={() =>{
                     //filter the restrocards and update the UI
                     //searchText
@@ -88,7 +88,7 @@ if(onlineStatus === false ) return  <h1>No internet</h1>
         <div className="food_Container flex flex-wrap ">
             {
                 FilteredListOfFoods.map((restro) => (
-                    <Link className="hover:scale-105"
+                    <Link className="hover:scale-x-105"
                     key={restro.info.id} 
                     to= {"/restaurants/"+restro?.info?.id}>
                   {  restro.info.isOpen ? (

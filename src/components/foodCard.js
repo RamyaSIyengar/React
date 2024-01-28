@@ -7,11 +7,11 @@ const FoodCard = (props) => {
     const {name, cuisines, avgRating, deliveryTime,costForTwo,aggregatedDiscountInfoV3
     } = foodData?.info;
     return (
-        <div className="foodCard m-4 p-4  h-[550px] w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 text-overflow: clip  transition-all " >
+        <div className="foodCard m-8 p-4  h-[550px] w-[350px] rounded-lg bg-gray-100 hover:bg-gray-200 text-overflow: clip  transition-all " >
           
             <div>
 
-            <img  className="foodlogo rounded-lg h-[300px] w-[250px] " src={ CDN_URL+ foodData.info.cloudinaryImageId}
+            <img  className="foodlogo rounded-lg h-[300px] w-[350px] " src={ CDN_URL+ foodData.info.cloudinaryImageId}
             />
             
             <h3 className="font-bold py-4 text-xl ">{name}</h3>
