@@ -58,15 +58,16 @@ const RestroMenu = () =>{
     return(
         <div className="text-center">
              <h1 className="text-2xl font-bold my-6">{name}</h1>
-            <p className="text-lg font-semibold">
+            <p className="text-lg font-bold p-4">
                 {cuisines.join(", ")}</p>
 
             {/* {categaries accordian} */}
 
             {categaries.map((category) => (
-               <RestaurantCategory/>
+               <RestaurantCategory data = {category.card?.card}/>
 
-            ))}
+            )
+            )}
             
             
 
