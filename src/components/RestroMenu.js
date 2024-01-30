@@ -15,6 +15,8 @@ const RestroMenu = () =>{
     console.log(resId)
 
     const resInfo = useRestroMenu(resId);
+
+    const [showIndex, setShowIndex] = useState(null);
     
    // moved this to useRestroMenu to fetchdata so tht here u can just display content -customhook
     // useEffect(() => {
@@ -63,8 +65,13 @@ const RestroMenu = () =>{
 
             {/* {categaries accordian} */}
 
-            {categaries.map((category) => (
-               <RestaurantCategory data = {category.card?.card}/>
+            {categaries.map((category, index) => (
+                //controlled component
+               <RestaurantCategory key={category.card?.card.title} 
+               data = {category.card?.card}
+               showItems = {index===showIndex ? true : false}
+               setShowIndex={()=>setShowIndex(index)}
+               />
 
             )
             )}
