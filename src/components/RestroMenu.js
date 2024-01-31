@@ -71,6 +71,7 @@ const RestroMenu = () =>{
                data = {category.card?.card}
                showItems = {index===showIndex ? true : false}
                setShowIndex={()=>setShowIndex(index)}
+
                />
 
             )

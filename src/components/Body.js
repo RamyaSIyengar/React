@@ -1,6 +1,7 @@
 import FoodCard, {withOpenLabel} from "./foodCard"
 // import foodList from "../../utils/mockData"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import UserContext from "../../utils/UserContex";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useListOfFoods from "../../utils/useListOfFoods";
@@ -50,6 +51,9 @@ const onlineStatus = useOnlineStatus();
 
 if(onlineStatus === false ) return  <h1>No internet</h1>
 
+//live updating the userName
+const { loggedInUser, setUserName } = useContext(UserContext);
+
 
 //  console.log("Body rendered")
     return ListOfFoods.length===0 ? <Shimmer/>:(
@@ -70,7 +74,7 @@ if(onlineStatus === false ) return  <h1>No internet</h1>
 
                 }}>Search🔍</button>
             </div>
-            <div className="search p-4 m-4 " >
+            <div className="search p-4 m-4 flex items-center " >
             <button 
             className="bg-gray-300 px-4 py-1 shadow-2xl rounded-lg hover:bg-gray-400" 
             onClick={() => {
@@ -82,6 +86,13 @@ if(onlineStatus === false ) return  <h1>No internet</h1>
             >
             Top Rated restaurants
             </button>
+            </div>
+
+            <div className="p-4 m-4 flex items-center" >
+                <label className="px-4 font-semibold text-lg">UserName :</label>
+              <input className="border border-gray-500 p-1" 
+              value={loggedInUser}
+              onChange={(e) => setUserName(e.target.value)} />
             </div>
             
             </div>

@@ -1,15 +1,18 @@
 import ItemList from "./ItemList"
 import { useState } from "react"
 
-const RestaurantCategory = ({data, showItems, setShowIndex}) =>{
+const RestaurantCategory = ({data, showItems, setShowIndex,}) =>{
     // console.log(data)
 
 
-//    const [showItems, setShowItems] = useState(false)
+    
     const handleClick = () => {
 
         setShowIndex();
+       
         
+        
+       
         // !setShowItems(!showItems) toggle before controlled component applied
     }
 

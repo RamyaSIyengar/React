@@ -7,10 +7,10 @@ const ItemList = ({items}) => {
            {items.map((item) =>(
             <div
             key={item.card.info.id}
-            className="p-4 m-4 border-gray-400 border-b-3 text-left flex flex-wrap justify-between"
+            className="p-4 m-4  border-b-4 border-gray-400 text-left flex flex-wrap justify-between"
             >
-            <div className="w-9/12">
-                <div className="py-2 font-medium from-neutral-700">
+            <div className="w-9/12    ">
+                <div className="py-2 font-medium from-neutral-700 ">
                      <span>{item.card.info.name}</span>
                      <span>  ₹{item.card.info.price/100 || item.card.info.defaultPrice/100 }</span>
                 </div>
