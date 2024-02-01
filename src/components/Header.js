@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import useOnlineStatus from "../../utils/useOnlineStatus"
 import UserContext from "../../utils/UserContex"
 import { useContext } from "react"
+import { useSelector } from "react-redux"
 
 const Header = () => {
     const [btnNameReact, setBtnNameReact] = useState("Login")
@@ -12,11 +13,15 @@ const Header = () => {
     const onlineStatus = useOnlineStatus();
 
     const {loggedInUser} = useContext(UserContext);
-    console.log(loggedInUser)
+    // console.log(loggedInUser)
 
-    useEffect(() =>{
-        console.log("useEffect called")
-    }, [])
+    //Selector- subscribing to the redux store using a Selector
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log(cartItems)
+
+    // useEffect(() =>{
+    //     console.log("useEffect called")
+    // }, [])
     return (
         <div className="flex justify-between shadow-lg bg-gray-200 ">
             {/* //bg-gray-200 shadow-lg m-2 sm:bg-yellow-50 lg:bg-pink-50 */}
@@ -34,7 +39,8 @@ const Header = () => {
                         <Link to="/About" className="font-semibold text-xl hover:text-gray-500">About Us</Link> </li>
                     <li className="px-6  font-semibold text-xl  hover:text-gray-500"><Link to="/Contact">Contact Us</Link></li>
                     <li className="px-6 font-semibold text-xl hover:text-gray-500"><Link to="/Grocery">Grocery</Link></li>
-                    <li className="px-6 font-semibold text-xl hover:text-gray-500">Cart</li>
+                    <li className="px-6 ">
+                    <Link to="/cart" className="font-semibold text-xl hover:text-gray-500">Cart🛒({cartItems.length}) </Link></li>
                     <button className=" bg-gray-300 font-semibold text-xl px-6  rounded-lg hover:bg-gray-400 "
                     onClick={ () => {
                         btnNameReact==="Login"?setBtnNameReact("Logout"):setBtnNameReact("Login")

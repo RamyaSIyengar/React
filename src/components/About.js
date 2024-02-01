@@ -22,7 +22,7 @@ class About extends Component{
 
         console.log("parent render")
         return(
-        <div className="AboutClassComponent">
+        <div className="AboutClassComponent font-bold text-lg">
             <h1>About Us</h1>
             <h2>React Application</h2>
             {/* <User name={"Ram"} Location={"Ayodhya"}/> 

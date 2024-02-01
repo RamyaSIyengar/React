@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class UserClass2 extends React.Component{
     constructor(props){
@@ -34,14 +35,15 @@ componentWillUnmount(){
 }
 render() {
 
-    const {name,location,avatar_url} = this.state.userInfo;
+    const {name,location,avatar_url, html_url} = this.state.userInfo;
 
     // debugger;
     return(
-        <div className="user-card">
+        <div className="user-card text-lg font-bold">
                 <img src={avatar_url} />
                 <h2>Name: {name}</h2>
                 <h3>Location: {location}</h3>
+                <h3>Github Link: <Link to={"https://github.com/RamyaSIyengar"}>{html_url}</Link></h3>
         </div>
     )
 }
