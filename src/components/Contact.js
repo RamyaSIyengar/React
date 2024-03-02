@@ -6,7 +6,7 @@ const Contact = () => {
                 <label className="font-bold">Name:</label>
                 <input type="text" name="name" placeholder="name" className="border border-gray-700  my-4 mx-4 px-4 "></input><br />
                 <label className="font-bold  ">Message:</label><br/>
-                <textarea type="text" name="message" placeholder="message"  rows="10" cols="30" className="border border-gray-700  my-4 mx-16 px-4"></textarea><br />
+                <textarea type="text" name="message" placeholder="message"  rows="10" cols="21" className="border border-gray-700  my-4 mx-16 px-4"></textarea><br />
                 <button className="bg-gray-400 rounded font-bold p-2 mx-16 my-4">Submit</button>
             </form>
         </div>
